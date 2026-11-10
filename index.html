@@ -4,7 +4,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>釜山首爾 2026</title>
-<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700&display=swap">
 <style>
 /* Layout: Apple-style — full-width alternating bands (white / warm grey), centered column, translucent sticky nav, big quiet type. */
@@ -50,15 +49,15 @@ section{padding-block:72px}
 .nav .wrap{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;height:56px;gap:20px}
 .brand{font-weight:600;font-size:15px;color:var(--fg);letter-spacing:-.01em;white-space:nowrap}
 .brand:hover{text-decoration:none}
-.navlinks{display:flex;gap:22px;font-size:13px;justify-self:end}
+.navlinks{display:flex;align-items:center;gap:22px;font-size:13px;justify-self:end}
 .navlinks a{color:var(--fg);opacity:.8;white-space:nowrap}
+.navlinks .sep{color:var(--fg3);margin:0 -10px}
 .navlinks a:hover{opacity:1;text-decoration:none}
 @media (max-width:760px){
-  .nav .wrap{grid-template-columns:1fr auto;height:auto;row-gap:0;padding-block:10px 8px;gap:16px}
-  .navlinks{order:1;justify-self:start;gap:16px}
-  .brand{order:2;justify-self:end}
-  .chips{order:3}
-  .chips{grid-column:1 / -1;margin-top:8px;margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
+  .nav .wrap{grid-template-columns:auto 1fr;height:auto;row-gap:0;padding-block:10px 8px;gap:16px}
+  .brand{order:1;justify-self:start}
+  .navlinks{order:2;justify-self:end;gap:16px}
+  .chips{order:3;grid-column:1 / -1;margin-top:8px;margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
 }
 
 /* Day chips in the nav */
@@ -133,7 +132,6 @@ section{padding-block:72px}
 /* Restaurants */
 .sechead{text-align:center;margin-bottom:40px}
 .sechead h2{font-size:clamp(32px,5vw,48px);font-weight:700}
-.sechead p{color:var(--fg2);font-size:19px;margin:10px auto 0;max-width:36em}
 .seg{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;margin-bottom:32px}
 .seg button{font:inherit;font-size:14px;font-weight:500;padding:8px 16px;border-radius:980px;border:1px solid var(--line);background:transparent;color:var(--fg);cursor:pointer;letter-spacing:-.01em}
 .seg button:hover{background:var(--bg)}
@@ -142,7 +140,6 @@ section{padding-block:72px}
 .card{background:var(--card);border-radius:18px;padding:22px 22px 18px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px;min-width:0}
 .card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
 .card .area{font-size:12px;font-weight:600;color:var(--fg2);letter-spacing:.02em}
-.card .pick{font-size:11px;font-weight:600;padding:3px 9px;border-radius:980px;background:var(--tag);color:var(--tag-fg);white-space:nowrap}
 .card h3{font-size:20px;font-weight:600;line-height:1.25;letter-spacing:-.02em}
 .card h3 a{color:var(--fg)}
 .card h3 small{display:block;font-size:14px;color:var(--fg2);font-weight:400;margin-top:2px}
@@ -161,9 +158,9 @@ section{padding-block:72px}
 <body>
 
 <nav class="nav" id="top"><div class="wrap">
-  <a class="brand" href="#day1">釜山 · 首爾 2026</a>
+  <a class="brand" href="#day1">2026 釜山 · 首爾</a>
   <div class="chips" id="chips"></div>
-  <div class="navlinks"><a href="#busan-food">釜山餐廳</a><a href="#seoul-food">首爾餐廳</a></div>
+  <div class="navlinks"><a href="#busan-food">釜山餐廳</a><span class="sep">/</span><a href="#seoul-food">首爾餐廳</a></div>
 </div></nav>
 
 <main id="days"></main>
@@ -183,7 +180,6 @@ section{padding-block:72px}
   </div>
 </section>
 
-
 <script>
 const I={
  food:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3M7 3v18M17 3c-2 0-3 3-3 7h3v11M17 3v7"/></svg>',
@@ -197,10 +193,7 @@ const I={
  beauty:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 17l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/></svg>',
  coffee:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h12v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><path d="M16 11h2a2 2 0 0 1 0 4h-2M7 4v2M10 4v2M13 4v2"/></svg>',
  meet:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20a6 6 0 0 1 12 0M14 20a4.5 4.5 0 0 1 7 -3"/></svg>',
- night:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>'
-};
-
-Object.assign(I,{
+ night:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>',
  wxload:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="8" opacity=".25"/><path d="M12 4a8 8 0 0 1 8 8"/></svg>',
  sun:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.5 1.5M17.2 17.2l1.5 1.5M5.3 18.7l1.5-1.5M17.2 6.8l1.5-1.5"/></svg>',
  psun:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9.5a3.5 3.5 0 1 1 5.4-4.3"/><path d="M9.5 3v1.5M3.5 9h1.5M5.3 5.3l1 1"/><path d="M8 19.5h9a3.5 3.5 0 0 0 .5-7 5 5 0 0 0-9.6 1.5A3 3 0 0 0 8 19.5z"/></svg>',
@@ -209,7 +202,8 @@ Object.assign(I,{
  rain:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 15.5h10a4 4 0 0 0 .6-8 5.5 5.5 0 0 0-10.6 1.6A3.2 3.2 0 0 0 7 15.5z"/><path d="M9 18.5l-1 2.5M13 18.5l-1 2.5M17 18.5l-1 2.5"/></svg>',
  snow:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 14.5h10a4 4 0 0 0 .6-8 5.5 5.5 0 0 0-10.6 1.6A3.2 3.2 0 0 0 7 14.5z"/><path d="M8.5 18.5h.01M12 20.5h.01M15.5 18.5h.01M12 17h.01"/></svg>',
  storm:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 14.5h10a4 4 0 0 0 .6-8 5.5 5.5 0 0 0-10.6 1.6A3.2 3.2 0 0 0 7 14.5z"/><path d="M13 14l-2.5 4h3L11 22"/></svg>'
-});
+};
+
 const DAYS=[
  {d:'11.15',w:'日',city:'釜山',title:'出發 & 抵達釜山',stay:'Trip Made',items:[
   {t:'12:30',k:'meet',w:'桃園機場第二航廈集合'},
@@ -258,29 +252,29 @@ const DAYS=[
 ];
 
 const BUSAN=[
- {area:'海雲台',pick:0,name:'元祖鮑魚粥',kr:'원조전복죽',hours:'6:30 – 23:00',addr:'부산 해운대구 해운대海邊路298路 24',map:'https://naver.me/G0prQoAx',info:'https://clairetsai.tw/busan-haundae-abalone-porridge/',tips:['近海雲台海水浴場、Paradise Hotel Busan（不在大馬路上）']},
- {area:'海雲台',pick:0,name:'味贊王鹽烤肉 海雲台店',kr:'맛찬들왕소금구이',hours:'11:30 – 23:00（15:00 – 17:00 休息）',addr:'釜山廣域市海雲台區海雲大路608番街46',map:'https://naver.me/GfrL7iE7',info:'https://whatime.space/haeundae-barbecue/',tips:['Naver 可預約；海雲台站 5 / 7 號出口步行 4–5 分鐘','主打 3.5 公分厚切熟成豬肉，全程專人代烤']},
- {area:'海雲台',pick:0,name:'大海鮑魚粥 釜山站直營店',kr:'바다마루전복죽',hours:'07:00 – 20:00（14:30 – 16:00 休息）最後點餐 19:30',addr:'海雲台尾浦站',map:'https://naver.me/FzmZhPHO',info:'https://cetustar.com/busanfood/',tips:[]},
- {area:'海雲台',pick:1,name:'螞蟻家辣炒章魚',kr:'개미집',hours:'24 小時',addr:'부산 해운대구 구남로 25',info:'https://blog.jesselin.com/archives/115395/haeundae-spicy-octopus-rice-killer-korean-bibimbap/',tips:['在海雲台前往海水浴場的大街上（廣安、西面都有分店）']},
- {area:'海雲台',pick:0,name:'Choil Yug',kr:'초일육',hours:'16:30 – 01:00',addr:'부산 해운대구 구남로8번길 58 2층',info:'https://www.instagram.com/reel/Dciby45Ti51/',tips:['海雲台站與龜南路附近，海理團路那區；入口在二樓','IG 人氣熟成烤肉店，專人代烤、小菜精緻']},
- {area:'海雲台',pick:1,name:'五福豬肉湯飯',kr:'오복돼지국밥',hours:'24 小時',info:'https://www.bigfang.tw/blog/post/obok-porksoup-haeundae',tips:['海雲台站 3 號出口步行 3–5 分鐘，在往海水浴場的大街上']},
- {area:'海雲台',pick:0,name:'DIART coffee 青沙浦',kr:'디아트커피',hours:'09:30 – 17:00',map:'https://naver.me/Gxk1OJez',info:'https://lizzzstyle.tw/diart-coffee/',tips:['招牌：土耳其蜂蜜奶油麵包','搭海岸列車或膠囊列車到青沙浦站，步行 2 分鐘，靠近港口','到店抽號碼牌候位，無法線上預約']},
- {area:'海雲台',pick:0,name:'Liberta 青沙浦店',kr:'리베르타 청사포점',hours:'09:00 – 19:30（19:00 最後點餐）',addr:'부산 해운대구 청사포로 137 (1~3층)',info:'https://mamahuhu.blog/overseas/liberta/',tips:['青沙浦海景第一排咖啡廳，三層樓；鄰近膠囊列車與海岸列車青沙浦站']},
- {area:'機張',pick:0,name:'豐苑場',kr:'풍원장시골밥상집',hours:'週二至週五 11:00 – 21:00',map:'https://naver.me/xhP6ibh4',info:'https://www.threads.com/@busantourgo/post/DQvMnRlkmmD/',tips:['澎湃傳統韓式家常料理，桌上 20–25 道以上，高 CP 值','在 Skyline Luge 再上坡走 5–10 分鐘；這邊叫 Uber 要等一下']},
- {area:'機張',pick:1,name:'Ojik 海帶湯',kr:'오직미역국',hours:'平日 10:00 – 20:00（15:30 – 16:30 休息）／假日 10:00 – 20:30（16:00 – 17:00 休息）',addr:'부산 기장군 기장읍 동암2길 3 2층',map:'https://naver.me/FnsX9yWS',info:'https://www.instagram.com/reel/C01LU2-vVxC/',tips:['DIY 煎餅：等餐時店家給麵糊與平底鍋，自己煎海草／蔥煎餅']},
- {area:'機張',pick:0,name:'Coral Ani',kr:'코랄라니',hours:'10:00 – 22:00（21:20 最後點餐）',map:'https://naver.me/GALRIqNv',info:'https://we4-travel.com/cafe-coralani/',tips:['Skyline Luge 斜坡滑車附近','四層樓，每層都有靠窗海景位，也有戶外海景座位']},
- {area:'西面',pick:0,name:'老宅燒肉店 Old Mansion',kr:'올드맨션',hours:'週一至週五 11:30 – 22:30（15:00 – 17:00 休息）；週末 12:30 – 22:30',map:'https://naver.me/5T0lQc4l',info:'https://www.instagram.com/reel/DFAoiAWTIIu/',tips:['近田浦站 7 號出口；到場用門口平板掃 Catch Table QR Code 排隊','熟成烤肉']},
- {area:'西面',pick:1,name:'秀英本家豬肉湯飯',kr:'수영본가돼지국밥',hours:'24 小時',map:'https://naver.me/IDBoq4Hq',info:'https://www.bigfang.tw/blog/post/suyeong-porksoup-seomyeon',tips:['西面站 1 / 7 號出口步行 2 分鐘，在西面湯飯一條街上','湯頭好喝，豬肉不腥']},
- {area:'西面',pick:1,name:'83獬豸',kr:'83해치',hours:'16:00 – 00:30（三點半開門，六點客滿）',map:'https://naver.me/Fgivy92X',info:'https://www.bigfang.tw/blog/post/83haechi-bbq-seomyeon',tips:['地鐵 1 / 2 號線西面站 8 號出口','用 Catchtable App 或到場掃 QR Code 線上候位','店員幫烤：五花肉、松阪豬、豬皮、石鍋炒飯']},
- {area:'西面',pick:1,name:'장어다움 Jangeo-daum',kr:'西面鰻魚燒烤（有盲鰻）',hours:'16:00 – 02:00（每月第 2、4、5 個週日公休）',addr:'부산 부산진구 부전로66번길 6',map:'https://naver.me/5DZp267y',tips:['自然產海鰻 바다장어、곰장어 盲鰻 炭火燒烤','無觀光客，在釜山商務酒店附近']},
- {area:'西面',pick:0,name:'DIART coffee 田浦',kr:'디아트커피',hours:'10:00 – 22:00（週一公休）',map:'https://naver.me/5FE5Pt8Q',info:'https://lizzzstyle.tw/diart-coffee/',tips:['招牌：土耳其蜂蜜奶油麵包','地鐵田浦站 8 號出口步行約 5 分鐘']},
- {area:'南浦洞',pick:1,name:'元祖釜山豬腳',kr:'원조부산족발',hours:'10:00 – 24:00',addr:'부산광역시 중구 광복로 13-1',map:'https://naver.me/FUiqRUKG',info:'https://www.bigfang.tw/blog/post/hanyang-jokbal-busan',tips:['地鐵 1 號線札嘎其站 3 號出口步行約 5 分鐘','必點冷盤豬腳 냉채족발：冰鎮切片 Q 彈，配海蜇皮、黃瓜、芥末醬，清爽帶嗆']},
- {area:'廣安里',pick:0,name:'水邊最高豬肉湯飯',kr:'수변최고돼지국밥',hours:'24 小時，全年無休',addr:'부산 수영구 광안로 63',info:'https://lizzzstyle.tw/su-byeon/',tips:['尖峰常排 30 分鐘以上，建議清晨、深夜或下午離峰','有民樂本店與廣安店兩家']},
- {area:'廣安里',pick:1,name:'烤腸 廣安里店',kr:'연막창 광안리점',hours:'平日 17:00 – 00:00／假日 16:00 – 01:00',addr:'부산 수영구 광남로 122 105-1호',map:'https://naver.me/xy7xBA6f',info:'https://blog.naver.com/speakinggirl/224184772140',tips:['Naver 可線上預約','豬大腸、牛皺胃處理乾淨，不油膩、口感彈牙']},
- {area:'廣安里',pick:1,name:'烤鰻魚 Jangduk Eels 廣安總店',kr:'장어덕',hours:'12:00 – 23:00',addr:'釜山水營區民樂洞 110-17',map:'https://naver.me/xWIDtvho',info:'https://www.threads.com/@pooh75820/post/DTz9u7KAFmZ/',tips:['地鐵 2 號線民樂站 1 / 3 號出口或廣安站 5 號出口','厚實 Q 彈、鮮甜無腥','西面有分店，西面站步行 5–10 分鐘']},
- {area:'廣安里',pick:0,name:'釜山廣安里章腸蝦',kr:'이낙에산다 광안리본점',hours:'11:00 – 20:50（20:20 最後點餐）',map:'https://naver.me/5JqdtYZz',info:'https://www.threads.com/@iamshin_kr/post/DbBUEJhkvcB/',tips:['招牌炒章魚、辣炒章魚肥腸蝦 낙곱새、蝦仁明太子水芹煎餅','金蓮山站 5 號出口步行約 3 分鐘','可 Naver 預約']},
- {area:'廣安里',pick:0,name:'La Feuille 麵包咖啡廳',kr:'라푀유 광안점',hours:'09:00 – 23:00',map:'https://naver.me/5EUZ755T',info:'https://lizzzstyle.tw/la-feuille/',tips:['六層樓，四層是海景內用座位；麵包從早上九點賣到晚上','週六可在這裡看廣安里無人機秀']},
- {area:'廣安里',pick:0,name:'casa busano terrace',kr:'',hours:'08:30 – 02:00',map:'https://map.naver.com/p/entry/place/1624692403',info:'https://mamahuhu.blog/overseas/casa-busano-terrace/',tips:[]}
+ {area:'海雲台',name:'元祖鮑魚粥',kr:'원조전복죽',hours:'6:30 – 23:00',addr:'부산 해운대구 해운대海邊路298路 24',map:'https://naver.me/G0prQoAx',info:'https://clairetsai.tw/busan-haundae-abalone-porridge/',tips:['近海雲台海水浴場、Paradise Hotel Busan（不在大馬路上）']},
+ {area:'海雲台',name:'味贊王鹽烤肉 海雲台店',kr:'맛찬들왕소금구이',hours:'11:30 – 23:00（15:00 – 17:00 休息）',addr:'釜山廣域市海雲台區海雲大路608番街46',map:'https://naver.me/GfrL7iE7',info:'https://whatime.space/haeundae-barbecue/',tips:['Naver 可預約；海雲台站 5 / 7 號出口步行 4–5 分鐘','主打 3.5 公分厚切熟成豬肉，全程專人代烤']},
+ {area:'海雲台',name:'大海鮑魚粥 釜山站直營店',kr:'바다마루전복죽',hours:'07:00 – 20:00（14:30 – 16:00 休息）最後點餐 19:30',addr:'海雲台尾浦站',map:'https://naver.me/FzmZhPHO',info:'https://cetustar.com/busanfood/',tips:[]},
+ {area:'海雲台',name:'螞蟻家辣炒章魚',kr:'개미집',hours:'24 小時',addr:'부산 해운대구 구남로 25',info:'https://blog.jesselin.com/archives/115395/haeundae-spicy-octopus-rice-killer-korean-bibimbap/',tips:['在海雲台前往海水浴場的大街上（廣安、西面都有分店）']},
+ {area:'海雲台',name:'Choil Yug',kr:'초일육',hours:'16:30 – 01:00',addr:'부산 해운대구 구남로8번길 58 2층',info:'https://www.instagram.com/reel/Dciby45Ti51/',tips:['海雲台站與龜南路附近，海理團路那區；入口在二樓','IG 人氣熟成烤肉店，專人代烤、小菜精緻']},
+ {area:'海雲台',name:'五福豬肉湯飯',kr:'오복돼지국밥',hours:'24 小時',info:'https://www.bigfang.tw/blog/post/obok-porksoup-haeundae',tips:['海雲台站 3 號出口步行 3–5 分鐘，在往海水浴場的大街上']},
+ {area:'海雲台',name:'DIART coffee 青沙浦',kr:'디아트커피',hours:'09:30 – 17:00',map:'https://naver.me/Gxk1OJez',info:'https://lizzzstyle.tw/diart-coffee/',tips:['招牌：土耳其蜂蜜奶油麵包','搭海岸列車或膠囊列車到青沙浦站，步行 2 分鐘，靠近港口','到店抽號碼牌候位，無法線上預約']},
+ {area:'海雲台',name:'Liberta 青沙浦店',kr:'리베르타 청사포점',hours:'09:00 – 19:30（19:00 最後點餐）',addr:'부산 해운대구 청사포로 137 (1~3층)',info:'https://mamahuhu.blog/overseas/liberta/',tips:['青沙浦海景第一排咖啡廳，三層樓；鄰近膠囊列車與海岸列車青沙浦站']},
+ {area:'機張',name:'豐苑場',kr:'풍원장시골밥상집',hours:'週二至週五 11:00 – 21:00',map:'https://naver.me/xhP6ibh4',info:'https://www.threads.com/@busantourgo/post/DQvMnRlkmmD/',tips:['澎湃傳統韓式家常料理，桌上 20–25 道以上，高 CP 值','在 Skyline Luge 再上坡走 5–10 分鐘；這邊叫 Uber 要等一下']},
+ {area:'機張',name:'Ojik 海帶湯',kr:'오직미역국',hours:'平日 10:00 – 20:00（15:30 – 16:30 休息）／假日 10:00 – 20:30（16:00 – 17:00 休息）',addr:'부산 기장군 기장읍 동암2길 3 2층',map:'https://naver.me/FnsX9yWS',info:'https://www.instagram.com/reel/C01LU2-vVxC/',tips:['DIY 煎餅：等餐時店家給麵糊與平底鍋，自己煎海草／蔥煎餅']},
+ {area:'機張',name:'Coral Ani',kr:'코랄라니',hours:'10:00 – 22:00（21:20 最後點餐）',map:'https://naver.me/GALRIqNv',info:'https://we4-travel.com/cafe-coralani/',tips:['Skyline Luge 斜坡滑車附近','四層樓，每層都有靠窗海景位，也有戶外海景座位']},
+ {area:'西面',name:'老宅燒肉店 Old Mansion',kr:'올드맨션',hours:'週一至週五 11:30 – 22:30（15:00 – 17:00 休息）；週末 12:30 – 22:30',map:'https://naver.me/5T0lQc4l',info:'https://www.instagram.com/reel/DFAoiAWTIIu/',tips:['近田浦站 7 號出口；到場用門口平板掃 Catch Table QR Code 排隊','熟成烤肉']},
+ {area:'西面',name:'秀英本家豬肉湯飯',kr:'수영본가돼지국밥',hours:'24 小時',map:'https://naver.me/IDBoq4Hq',info:'https://www.bigfang.tw/blog/post/suyeong-porksoup-seomyeon',tips:['西面站 1 / 7 號出口步行 2 分鐘，在西面湯飯一條街上','湯頭好喝，豬肉不腥']},
+ {area:'西面',name:'83獬豸',kr:'83해치',hours:'16:00 – 00:30（三點半開門，六點客滿）',map:'https://naver.me/Fgivy92X',info:'https://www.bigfang.tw/blog/post/83haechi-bbq-seomyeon',tips:['地鐵 1 / 2 號線西面站 8 號出口','用 Catchtable App 或到場掃 QR Code 線上候位','店員幫烤：五花肉、松阪豬、豬皮、石鍋炒飯']},
+ {area:'西面',name:'장어다움 Jangeo-daum',kr:'西面鰻魚燒烤（有盲鰻）',hours:'16:00 – 02:00（每月第 2、4、5 個週日公休）',addr:'부산 부산진구 부전로66번길 6',map:'https://naver.me/5DZp267y',tips:['自然產海鰻 바다장어、곰장어 盲鰻 炭火燒烤','無觀光客，在釜山商務酒店附近']},
+ {area:'西面',name:'DIART coffee 田浦',kr:'디아트커피',hours:'10:00 – 22:00（週一公休）',map:'https://naver.me/5FE5Pt8Q',info:'https://lizzzstyle.tw/diart-coffee/',tips:['招牌：土耳其蜂蜜奶油麵包','地鐵田浦站 8 號出口步行約 5 分鐘']},
+ {area:'南浦洞',name:'元祖釜山豬腳',kr:'원조부산족발',hours:'10:00 – 24:00',addr:'부산광역시 중구 광복로 13-1',map:'https://naver.me/FUiqRUKG',info:'https://www.bigfang.tw/blog/post/hanyang-jokbal-busan',tips:['地鐵 1 號線札嘎其站 3 號出口步行約 5 分鐘','必點冷盤豬腳 냉채족발：冰鎮切片 Q 彈，配海蜇皮、黃瓜、芥末醬，清爽帶嗆']},
+ {area:'廣安里',name:'水邊最高豬肉湯飯',kr:'수변최고돼지국밥',hours:'24 小時，全年無休',addr:'부산 수영구 광안로 63',info:'https://lizzzstyle.tw/su-byeon/',tips:['尖峰常排 30 分鐘以上，建議清晨、深夜或下午離峰','有民樂本店與廣安店兩家']},
+ {area:'廣安里',name:'烤腸 廣安里店',kr:'연막창 광안리점',hours:'平日 17:00 – 00:00／假日 16:00 – 01:00',addr:'부산 수영구 광남로 122 105-1호',map:'https://naver.me/xy7xBA6f',info:'https://blog.naver.com/speakinggirl/224184772140',tips:['Naver 可線上預約','豬大腸、牛皺胃處理乾淨，不油膩、口感彈牙']},
+ {area:'廣安里',name:'烤鰻魚 Jangduk Eels 廣安總店',kr:'장어덕',hours:'12:00 – 23:00',addr:'釜山水營區民樂洞 110-17',map:'https://naver.me/xWIDtvho',info:'https://www.threads.com/@pooh75820/post/DTz9u7KAFmZ/',tips:['地鐵 2 號線民樂站 1 / 3 號出口或廣安站 5 號出口','厚實 Q 彈、鮮甜無腥','西面有分店，西面站步行 5–10 分鐘']},
+ {area:'廣安里',name:'釜山廣安里章腸蝦',kr:'이낙에산다 광안리본점',hours:'11:00 – 20:50（20:20 最後點餐）',map:'https://naver.me/5JqdtYZz',info:'https://www.threads.com/@iamshin_kr/post/DbBUEJhkvcB/',tips:['招牌炒章魚、辣炒章魚肥腸蝦 낙곱새、蝦仁明太子水芹煎餅','金蓮山站 5 號出口步行約 3 分鐘','可 Naver 預約']},
+ {area:'廣安里',name:'La Feuille 麵包咖啡廳',kr:'라푀유 광안점',hours:'09:00 – 23:00',map:'https://naver.me/5EUZ755T',info:'https://lizzzstyle.tw/la-feuille/',tips:['六層樓，四層是海景內用座位；麵包從早上九點賣到晚上','週六可在這裡看廣安里無人機秀']},
+ {area:'廣安里',name:'casa busano terrace',kr:'',hours:'08:30 – 02:00',map:'https://map.naver.com/p/entry/place/1624692403',info:'https://mamahuhu.blog/overseas/casa-busano-terrace/',tips:[]}
 ];
 
 const SEOUL=[
