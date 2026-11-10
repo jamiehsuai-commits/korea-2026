@@ -54,7 +54,10 @@ section{padding-block:72px}
 .navlinks a{color:var(--fg);opacity:.8;white-space:nowrap}
 .navlinks a:hover{opacity:1;text-decoration:none}
 @media (max-width:760px){
-  .nav .wrap{grid-template-columns:1fr auto;height:auto;row-gap:0;padding-block:10px 8px}
+  .nav .wrap{grid-template-columns:1fr auto;height:auto;row-gap:0;padding-block:10px 8px;gap:16px}
+  .navlinks{order:1;justify-self:start;gap:16px}
+  .brand{order:2;justify-self:end}
+  .chips{order:3}
   .chips{grid-column:1 / -1;margin-top:8px;margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
 }
 
@@ -208,8 +211,8 @@ Object.assign(I,{
  storm:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 14.5h10a4 4 0 0 0 .6-8 5.5 5.5 0 0 0-10.6 1.6A3.2 3.2 0 0 0 7 14.5z"/><path d="M13 14l-2.5 4h3L11 22"/></svg>'
 });
 const DAYS=[
- {d:'11.15',w:'日',city:'釜山',title:'出發，晚上抵達釜山',stay:'Trip Made',items:[
-  {t:'12:30',k:'meet',w:'桃園機場集合'},
+ {d:'11.15',w:'日',city:'釜山',title:'出發 & 抵達釜山',stay:'Trip Made',items:[
+  {t:'12:30',k:'meet',w:'桃園機場第二航廈集合'},
   {ticket:{icon:'plane',code:'長榮 BR164',from:'TPE',to:'PUS',dep:'15:00',arr:'18:15',dur:'3h 15m',label:'桃園 → 釜山金海'}},
   {t:'20:00',k:'car',w:'機場接送'},
   {t:'21:00',k:'hotel',w:'Check in · Trip Made',q:'트립메이드 부산',google:'https://maps.app.goo.gl/4fGLKGczFAAdAQgF6'}]},
@@ -239,7 +242,7 @@ const DAYS=[
   {t:'12:00',w:'午餐',quiet:1},
   {t:'15:30',k:'sight',w:'松島海上纜車 Busan Air Cruise',q:'부산에어크루즈 송도해상케이블카',link:'https://busanaircruise.co.kr/main/main.html'},
   {t:'18:00',w:'晚餐',quiet:1}]},
- {d:'11.20',w:'五',city:'首爾',title:'搭 KTX 上首爾，晚上吃韓牛',stay:'G2 Hotel',items:[
+ {d:'11.20',w:'五',city:'首爾',title:'前往首爾',stay:'G2 Hotel',items:[
   {t:'11:00',k:'hotel',w:'Check out'},
   {ticket:{icon:'train',code:'KTX-Cheongryong 036',from:'釜山',to:'首爾',dep:'12:34',arr:'15:00',dur:'2h 26m',label:'Busan → Seoul'}},
   {t:'15:30',k:'hotel',w:'Check in · G2 Hotel',q:'G2호텔 서울',google:'https://maps.app.goo.gl/jn39pMTkjeX7E76ZA'},
