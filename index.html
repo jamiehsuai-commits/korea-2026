@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>釜山首爾 2026</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: Apple-style — full-width alternating bands (white / warm grey), centered column, translucent sticky nav, big quiet type. */
+:root{
+  --bg:#ffffff; --band:#f5f5f7; --card:#ffffff;
+  --fg:#1d1d1f; --fg2:#6e6e73; --fg3:#86868b;
+  --line:rgba(0,0,0,.08); --accent:#0071e3; --accent-fg:#ffffff;
+  --tag:#e8f0fe; --tag-fg:#0058b0;
+  --nav:rgba(255,255,255,.72);
+  --shadow:0 2px 12px rgba(0,0,0,.06);
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Inter","Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#000000; --band:#161617; --card:#1d1d1f;
+  --fg:#f5f5f7; --fg2:#a1a1a6; --fg3:#86868b;
+  --line:rgba(255,255,255,.12); --accent:#2997ff; --accent-fg:#000000;
+  --tag:#0f2a4a; --tag-fg:#7fbcff;
+  --nav:rgba(0,0,0,.72); --shadow:0 2px 12px rgba(0,0,0,.4); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#000000; --band:#161617; --card:#1d1d1f;
+  --fg:#f5f5f7; --fg2:#a1a1a6; --fg3:#86868b;
+  --line:rgba(255,255,255,.12); --accent:#2997ff; --accent-fg:#000000;
+  --tag:#0f2a4a; --tag-fg:#7fbcff;
+  --nav:rgba(0,0,0,.72); --shadow:0 2px 12px rgba(0,0,0,.4); color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);font-size:17px;line-height:1.47;letter-spacing:-.012em;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--nav);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px)}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+h1,h2,h3{margin:0;text-wrap:balance;letter-spacing:-.025em}
+.wrap{max-width:980px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.band{background:var(--band)}
+section{padding-block:72px}
+@media (max-width:600px){section{padding-block:48px}}
+
+/* Nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--nav);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;height:56px;gap:20px}
+.brand{font-weight:600;font-size:15px;color:var(--fg);letter-spacing:-.01em;white-space:nowrap}
+.brand:hover{text-decoration:none}
+.navlinks{display:flex;gap:22px;font-size:13px;justify-self:end}
+.navlinks a{color:var(--fg);opacity:.8;white-space:nowrap}
+.navlinks a:hover{opacity:1;text-decoration:none}
+@media (max-width:760px){
+  .nav .wrap{grid-template-columns:1fr auto;height:auto;row-gap:0;padding-block:10px 8px}
+  .chips{grid-column:1 / -1;margin-top:8px;margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
+}
+
+/* Day chips in the nav */
+.chips{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;justify-content:center;min-width:0}
+.chips::-webkit-scrollbar{display:none}
+@media (max-width:1000px){.chips{justify-content:flex-start}}
+.chip{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;min-width:58px;padding:5px 10px;border-radius:10px;color:var(--fg);line-height:1.2}
+.chip b{font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.chip small{color:var(--fg2);font-size:10px}
+.chip:hover{background:var(--band);text-decoration:none}
+.chip.active{background:var(--fg);color:var(--bg)}
+.chip.active small{color:var(--bg);opacity:.7}
+
+/* Day sections */
+.day{scroll-margin-top:calc(57px + env(safe-area-inset-top,0px));--g1:#0a84ff;--g2:#5ac8fa}
+@media (max-width:760px){.day{scroll-margin-top:calc(96px + env(safe-area-inset-top,0px))}}
+.day.seoul{--g1:#bf5af2;--g2:#ff6482}
+.day .wrap{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:40px 64px;align-items:start}
+@media (max-width:760px){.day .wrap{grid-template-columns:1fr;gap:28px}}
+.dayhead{position:sticky;top:calc(80px + env(safe-area-inset-top,0px));display:flex;flex-direction:column;gap:8px}
+@media (max-width:760px){.dayhead{position:static}}
+.dayhead .top{display:flex;align-items:flex-end;gap:22px;flex-wrap:wrap}
+.wx{display:flex;align-items:center;gap:10px;padding-bottom:10px;min-height:48px}
+.wx .wxi{width:44px;height:44px;display:grid;place-items:center;color:var(--fg)}
+.wx .wxi svg{width:40px;height:40px}
+.wx .wxt{display:flex;flex-direction:column;line-height:1.25}
+.wx .wxt b{font-size:20px;font-weight:600;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.wx .wxt span{font-size:12px;color:var(--fg2)}
+.wx.none .wxi{color:var(--fg3)}
+.dayhead .big{font-size:clamp(72px,10vw,112px);font-weight:700;line-height:.9;letter-spacing:-.05em;background:linear-gradient(135deg,var(--g1),var(--g2));-webkit-background-clip:text;background-clip:text;color:transparent;font-variant-numeric:tabular-nums}
+.dayhead .num{font-size:13px;font-weight:600;color:var(--fg2);letter-spacing:.04em;text-transform:uppercase}
+.dayhead h2{font-size:clamp(26px,3.4vw,34px);font-weight:700;line-height:1.15;margin-top:6px}
+.dayhead .date{font-size:15px;color:var(--fg2);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.dayhead .stay{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--fg2);margin-top:6px}
+.dayhead .stay svg{width:16px;height:16px}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:3px 10px;border-radius:980px;background:var(--tag);color:var(--tag-fg)}
+.pill.today{background:var(--accent);color:var(--accent-fg)}
+
+.timeline{list-style:none;margin:0;padding:0;min-width:0}
+.timeline li{display:grid;grid-template-columns:52px 40px 1fr;gap:0 12px;position:relative}
+.timeline li::before{content:"";position:absolute;left:calc(52px + 12px + 19px);top:0;bottom:0;width:2px;background:var(--line)}
+.timeline li:first-child::before{top:22px}
+.timeline li:last-child::before{bottom:auto;height:22px}
+.timeline .t{font-variant-numeric:tabular-nums;font-size:14px;color:var(--fg2);font-weight:600;white-space:nowrap;padding-top:9px;line-height:1.3}
+.timeline .t span{display:block;color:var(--fg3);font-size:12px;font-weight:500}
+.timeline .ic{position:relative;z-index:1;width:40px;height:40px;border-radius:50%;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);display:grid;place-items:center;color:var(--fg)}
+.timeline .ic svg{width:18px;height:18px}
+.timeline li.quiet .ic{width:12px;height:12px;margin:14px;border:2px solid var(--fg3);box-shadow:none;background:var(--bg)}
+.timeline li.quiet .ic svg{display:none}
+.timeline .what{min-width:0;padding:8px 0 28px;font-size:19px;font-weight:500;line-height:1.35;letter-spacing:-.02em}
+.timeline li:last-child .what{padding-bottom:0}
+.timeline .what .note{display:block;font-size:14px;color:var(--fg2);font-weight:400;margin-top:4px;letter-spacing:-.01em}
+.timeline .what .links{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px;font-size:13px;font-weight:500}
+.timeline .what .links a::after{content:" ›"}
+.timeline li.quiet .what{color:var(--fg2);font-weight:400;font-size:16px}
+.timeline li.ticketrow .what{padding-top:0}
+
+/* Ticket (flight / train) — Wallet-style pass */
+.ticket{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;border-radius:20px;padding:22px 24px;margin-top:2px;max-width:520px;color:#f5f5f7;background:linear-gradient(135deg,#1c1c1e 0%,#2c2c2e 60%,#3a3a3c 100%);box-shadow:0 10px 30px rgba(0,0,0,.18);position:relative;overflow:hidden}
+.ticket::after{content:"";position:absolute;inset:auto -40px -60px auto;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,var(--g1),transparent 70%);opacity:.5}
+.ticket>*{position:relative;z-index:1}
+.ticket .code{font-size:11px;color:rgba(245,245,247,.6);letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+.ticket .port{font-size:34px;font-weight:700;letter-spacing:-.03em;line-height:1.1;margin-top:4px}
+.ticket .time{font-size:14px;color:rgba(245,245,247,.75);font-variant-numeric:tabular-nums;margin-top:4px}
+.ticket .mid{display:flex;flex-direction:column;align-items:center;gap:6px;color:rgba(245,245,247,.6);font-size:12px;min-width:80px}
+.ticket .mid svg{width:20px;height:20px;color:#f5f5f7}
+.ticket .mid .line{width:80px;height:1px;background:rgba(245,245,247,.35);position:relative}
+.ticket .mid .line::after{content:"";position:absolute;right:-1px;top:-3px;width:7px;height:7px;border-right:1px solid rgba(245,245,247,.7);border-top:1px solid rgba(245,245,247,.7);transform:rotate(45deg)}
+.ticket .to{text-align:right}
+@media (max-width:420px){.ticket{padding:16px 18px;gap:10px}.ticket .port{font-size:24px}.ticket .mid .line{width:44px}.ticket .mid{min-width:44px}}
+
+/* Restaurants */
+.sechead{text-align:center;margin-bottom:40px}
+.sechead h2{font-size:clamp(32px,5vw,48px);font-weight:700}
+.sechead p{color:var(--fg2);font-size:19px;margin:10px auto 0;max-width:36em}
+.seg{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;margin-bottom:32px}
+.seg button{font:inherit;font-size:14px;font-weight:500;padding:8px 16px;border-radius:980px;border:1px solid var(--line);background:transparent;color:var(--fg);cursor:pointer;letter-spacing:-.01em}
+.seg button:hover{background:var(--bg)}
+.seg button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.card{background:var(--card);border-radius:18px;padding:22px 22px 18px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px;min-width:0}
+.card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.card .area{font-size:12px;font-weight:600;color:var(--fg2);letter-spacing:.02em}
+.card .pick{font-size:11px;font-weight:600;padding:3px 9px;border-radius:980px;background:var(--tag);color:var(--tag-fg);white-space:nowrap}
+.card h3{font-size:20px;font-weight:600;line-height:1.25;letter-spacing:-.02em}
+.card h3 a{color:var(--fg)}
+.card h3 small{display:block;font-size:14px;color:var(--fg2);font-weight:400;margin-top:2px}
+.card .row{display:grid;grid-template-columns:44px 1fr;gap:10px;font-size:14px;color:var(--fg2);line-height:1.45}
+.card .row .k{color:var(--fg3);font-size:12px;font-weight:600;letter-spacing:.02em;padding-top:2px}
+.card .row .v{min-width:0;overflow-wrap:anywhere}
+.card .tips{margin:0;padding:0;list-style:none;font-size:14px;color:var(--fg2);display:flex;flex-direction:column;gap:5px;line-height:1.45}
+.card .tips li{padding-left:14px;position:relative}
+.card .tips li::before{content:"";position:absolute;left:0;top:.6em;width:5px;height:5px;border-radius:50%;background:var(--fg3)}
+.card .actions{display:flex;gap:16px;margin-top:auto;padding-top:8px;font-size:14px;font-weight:500}
+.card .actions a::after{content:" ›"}
+
+#seoul-food{padding-bottom:96px}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="top"><div class="wrap">
+  <a class="brand" href="#day1">釜山 · 首爾 2026</a>
+  <div class="chips" id="chips"></div>
+  <div class="navlinks"><a href="#busan-food">釜山餐廳</a><a href="#seoul-food">首爾餐廳</a></div>
+</div></nav>
+
+<main id="days"></main>
+
+<section class="band" id="busan-food">
+  <div class="wrap">
+    <div class="sechead"><h2>釜山餐廳</h2></div>
+    <div class="seg" id="areaSeg" role="group" aria-label="地區篩選"></div>
+    <div class="grid" id="busanGrid"></div>
+  </div>
+</section>
+
+<section id="seoul-food">
+  <div class="wrap">
+    <div class="sechead"><h2>首爾餐廳</h2></div>
+    <div class="grid" id="seoulGrid"></div>
+  </div>
+</section>
+
+
+<script>
+const I={
+ food:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3M7 3v18M17 3c-2 0-3 3-3 7h3v11M17 3v7"/></svg>',
+ sight:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>',
+ plane:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 21l2-7 7-5a2 2 0 0 0-2-3l-7 4-7-2-1 1 5 4-2 4 1 1 4-2 3 5z"/></svg>',
+ train:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M9 21l1.5-4M15 21l-1.5-4"/><circle cx="9" cy="14" r=".6" fill="currentColor"/><circle cx="15" cy="14" r=".6" fill="currentColor"/></svg>',
+ car:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16v-4l2.2-5a2 2 0 0 1 1.8-1.2h8a2 2 0 0 1 1.8 1.2L20 12v4z"/><path d="M4 12h16M6 16v2M18 16v2"/><circle cx="7.5" cy="14" r=".7" fill="currentColor"/><circle cx="16.5" cy="14" r=".7" fill="currentColor"/></svg>',
+ hotel:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18V7M3 14h18v4M3 14V11h11a4 4 0 0 1 4 4"/><circle cx="7.5" cy="10" r="1.8"/></svg>',
+ shop:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>',
+ spa:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-3 4-5 6-5 9a5 5 0 0 0 10 0c0-3-2-5-5-9z"/><path d="M12 21v-4"/></svg>',
+ beauty:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 17l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/></svg>',
+ coffee:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h12v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><path d="M16 11h2a2 2 0 0 1 0 4h-2M7 4v2M10 4v2M13 4v2"/></svg>',
+ meet:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20a6 6 0 0 1 12 0M14 20a4.5 4.5 0 0 1 7 -3"/></svg>',
+ night:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>'
+};
+
+Object.assign(I,{
+ wxload:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="8" opacity=".25"/><path d="M12 4a8 8 0 0 1 8 8"/></svg>',
+ sun:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.5 1.5M17.2 17.2l1.5 1.5M5.3 18.7l1.5-1.5M17.2 6.8l1.5-1.5"/></svg>',
+ psun:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9.5a3.5 3.5 0 1 1 5.4-4.3"/><path d="M9.5 3v1.5M3.5 9h1.5M5.3 5.3l1 1"/><path d="M8 19.5h9a3.5 3.5 0 0 0 .5-7 5 5 0 0 0-9.6 1.5A3 3 0 0 0 8 19.5z"/></svg>',
+ cloud:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18.5h10a4 4 0 0 0 .6-8 5.5 5.5 0 0 0-10.6 1.6A3.2 3.2 0 0 0 7 18.5z"/></svg>',
+ fog:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 14.5h10a4 4 0 0 0 .6-8 5.5 5.5 0 0 0-10.6 1.6A3.2 3.2 0 0 0 7 14.5z"/><path d="M5 18h14M8 21h8"/></svg>',
+ rain:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 15.5h10a4 4 0 0 0 .6-8 5.5 5.5 0 0 0-10.6 1.6A3.2 3.2 0 0 0 7 15.5z"/><path d="M9 18.5l-1 2.5M13 18.5l-1 2.5M17 18.5l-1 2.5"/></svg>',
+ snow:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 14.5h10a4 4 0 0 0 .6-8 5.5 5.5 0 0 0-10.6 1.6A3.2 3.2 0 0 0 7 14.5z"/><path d="M8.5 18.5h.01M12 20.5h.01M15.5 18.5h.01M12 17h.01"/></svg>',
+ storm:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 14.5h10a4 4 0 0 0 .6-8 5.5 5.5 0 0 0-10.6 1.6A3.2 3.2 0 0 0 7 14.5z"/><path d="M13 14l-2.5 4h3L11 22"/></svg>'
+});
+const DAYS=[
+ {d:'11.15',w:'日',city:'釜山',title:'出發，晚上抵達釜山',stay:'Trip Made',items:[
+  {t:'12:30',k:'meet',w:'桃園機場集合'},
+  {ticket:{icon:'plane',code:'長榮 BR164',from:'TPE',to:'PUS',dep:'15:00',arr:'18:15',dur:'3h 15m',label:'桃園 → 釜山金海'}},
+  {t:'20:00',k:'car',w:'機場接送'},
+  {t:'21:00',k:'hotel',w:'Check in · Trip Made',q:'트립메이드 부산',google:'https://maps.app.goo.gl/4fGLKGczFAAdAQgF6'}]},
+ {d:'11.16',w:'一',city:'釜山',title:'甘川洞、白淺灘、ARTE MUSEUM',stay:'Trip Made',items:[
+  {t:'09:00',k:'food',w:'秀英本家豬肉湯飯',q:'수영본가돼지국밥 서면',note:'西面站 1 / 7 號出口步行 2 分鐘，24 小時營業'},
+  {t:'10:00',k:'sight',w:'甘川洞文化村',q:'감천문화마을'},
+  {t:'12:00',k:'food',w:'影島海女村海鮮大餐',q:'영도 해녀촌',link:'https://tessatravel.tw/yeongdo-haenyeo-village/'},
+  {t:'15:00',k:'sight',w:'白淺灘文化村',q:'흰여울문화마을'},
+  {t:'16:00',k:'sight',w:'ARTE MUSEUM',q:'아르떼뮤지엄 부산'},
+  {t:'18:00',k:'shop',w:'西面地下街',q:'서면지하상가'},
+  {t:'20:00',k:'food',w:'장어다움 Jangeo-daum 鰻魚燒烤',q:'장어다움 서면',naver:'https://naver.me/5DZp267y',note:'西面，炭火海鰻、盲鰻；16:00 開到凌晨 2:00'}]},
+ {d:'11.17',w:'二',city:'釜山',title:'機張斜坡滑車、樂天 OUTLET',stay:'Trip Made',items:[
+  {t:'10:00',k:'food',w:'豐苑場 풍원장시골밥상집',q:'풍원장시골밥상집',naver:'https://naver.me/xhP6ibh4',note:'機張，澎湃韓定食；在滑車上坡再走 5–10 分鐘'},
+  {t:'11:00',k:'sight',w:'釜山斜坡滑車 Skyline Luge',q:'스카이라인 루지 부산',link:'https://busan.skylineluge.kr/en/'},
+  {t:'12:00',w:'午餐',quiet:1},
+  {t:'15:00',k:'shop',w:'樂天 OUTLET',q:'롯데프리미엄아울렛 동부산점'},
+  {t:'18:00',w:'晚餐',quiet:1}]},
+ {d:'11.18',w:'三',city:'釜山',title:'海雲台、青沙浦、廣安里夜景',stay:'Trip Made',items:[
+  {t:'10:00',k:'sight',w:'海雲台海灘',q:'해운대해수욕장',note:'散步、拍照'},
+  {t:'12:00',w:'午餐',quiet:1},
+  {t:'15:00',k:'coffee',w:'青沙浦',q:'청사포',note:'DIART coffee 或 Liberta 海景咖啡'},
+  {t:'17:30',k:'night',w:'廣安里晚餐、廣安大橋夜景',q:'광안리해수욕장'},
+  {t:'21:00',k:'spa',w:'SPA LAND 五星級汗蒸幕',q:'스파랜드 센텀시티',note:'新世界百貨 Centum City'}]},
+ {d:'11.19',w:'四',city:'釜山',title:'札嘎其市場、松島纜車',stay:'Trip Made',items:[
+  {t:'08:00',t2:'10:00',k:'beauty',w:'仔妮媽化妝'},
+  {t:'11:30',k:'sight',w:'札嘎其市場',q:'자갈치시장'},
+  {t:'12:00',w:'午餐',quiet:1},
+  {t:'15:30',k:'sight',w:'松島海上纜車 Busan Air Cruise',q:'부산에어크루즈 송도해상케이블카',link:'https://busanaircruise.co.kr/main/main.html'},
+  {t:'18:00',w:'晚餐',quiet:1}]},
+ {d:'11.20',w:'五',city:'首爾',title:'搭 KTX 上首爾，晚上吃韓牛',stay:'G2 Hotel',items:[
+  {t:'11:00',k:'hotel',w:'Check out'},
+  {ticket:{icon:'train',code:'KTX-Cheongryong 036',from:'釜山',to:'首爾',dep:'12:34',arr:'15:00',dur:'2h 26m',label:'Busan → Seoul'}},
+  {t:'15:30',k:'hotel',w:'Check in · G2 Hotel',q:'G2호텔 서울',google:'https://maps.app.goo.gl/jn39pMTkjeX7E76ZA'},
+  {t:'18:00',k:'food',w:'晚餐 · Gobau 烤韓牛',q:'고바우 동대문',note:'東大門，40 年韓牛老店'}]},
+ {d:'11.21',w:'六',city:'首爾',title:'聖水洞、明洞、弘大',stay:'G2 Hotel',items:[
+  {t:'09:30',k:'beauty',w:'仔 醫美 @ 明洞',note:'預計 11:30 結束'},
+  {t:'12:00',w:'午餐',quiet:1},
+  {t:'18:00',w:'晚餐',quiet:1}]},
+ {d:'11.22',w:'日',city:'首爾',title:'回家',items:[
+  {t:'12:00',w:'午餐',quiet:1},
+  {t:'15:00',k:'car',w:'機場接送'},
+  {ticket:{icon:'plane',code:'長榮 BR159',from:'ICN',to:'TPE',dep:'19:45',arr:'21:40',dur:'2h 55m',label:'仁川 → 桃園'}}]}
+];
+
+const BUSAN=[
+ {area:'海雲台',pick:0,name:'元祖鮑魚粥',kr:'원조전복죽',hours:'6:30 – 23:00',addr:'부산 해운대구 해운대海邊路298路 24',map:'https://naver.me/G0prQoAx',info:'https://clairetsai.tw/busan-haundae-abalone-porridge/',tips:['近海雲台海水浴場、Paradise Hotel Busan（不在大馬路上）']},
+ {area:'海雲台',pick:0,name:'味贊王鹽烤肉 海雲台店',kr:'맛찬들왕소금구이',hours:'11:30 – 23:00（15:00 – 17:00 休息）',addr:'釜山廣域市海雲台區海雲大路608番街46',map:'https://naver.me/GfrL7iE7',info:'https://whatime.space/haeundae-barbecue/',tips:['Naver 可預約；海雲台站 5 / 7 號出口步行 4–5 分鐘','主打 3.5 公分厚切熟成豬肉，全程專人代烤']},
+ {area:'海雲台',pick:0,name:'大海鮑魚粥 釜山站直營店',kr:'바다마루전복죽',hours:'07:00 – 20:00（14:30 – 16:00 休息）最後點餐 19:30',addr:'海雲台尾浦站',map:'https://naver.me/FzmZhPHO',info:'https://cetustar.com/busanfood/',tips:[]},
+ {area:'海雲台',pick:1,name:'螞蟻家辣炒章魚',kr:'개미집',hours:'24 小時',addr:'부산 해운대구 구남로 25',info:'https://blog.jesselin.com/archives/115395/haeundae-spicy-octopus-rice-killer-korean-bibimbap/',tips:['在海雲台前往海水浴場的大街上（廣安、西面都有分店）']},
+ {area:'海雲台',pick:0,name:'Choil Yug',kr:'초일육',hours:'16:30 – 01:00',addr:'부산 해운대구 구남로8번길 58 2층',info:'https://www.instagram.com/reel/Dciby45Ti51/',tips:['海雲台站與龜南路附近，海理團路那區；入口在二樓','IG 人氣熟成烤肉店，專人代烤、小菜精緻']},
+ {area:'海雲台',pick:1,name:'五福豬肉湯飯',kr:'오복돼지국밥',hours:'24 小時',info:'https://www.bigfang.tw/blog/post/obok-porksoup-haeundae',tips:['海雲台站 3 號出口步行 3–5 分鐘，在往海水浴場的大街上']},
+ {area:'海雲台',pick:0,name:'DIART coffee 青沙浦',kr:'디아트커피',hours:'09:30 – 17:00',map:'https://naver.me/Gxk1OJez',info:'https://lizzzstyle.tw/diart-coffee/',tips:['招牌：土耳其蜂蜜奶油麵包','搭海岸列車或膠囊列車到青沙浦站，步行 2 分鐘，靠近港口','到店抽號碼牌候位，無法線上預約']},
+ {area:'海雲台',pick:0,name:'Liberta 青沙浦店',kr:'리베르타 청사포점',hours:'09:00 – 19:30（19:00 最後點餐）',addr:'부산 해운대구 청사포로 137 (1~3층)',info:'https://mamahuhu.blog/overseas/liberta/',tips:['青沙浦海景第一排咖啡廳，三層樓；鄰近膠囊列車與海岸列車青沙浦站']},
+ {area:'機張',pick:0,name:'豐苑場',kr:'풍원장시골밥상집',hours:'週二至週五 11:00 – 21:00',map:'https://naver.me/xhP6ibh4',info:'https://www.threads.com/@busantourgo/post/DQvMnRlkmmD/',tips:['澎湃傳統韓式家常料理，桌上 20–25 道以上，高 CP 值','在 Skyline Luge 再上坡走 5–10 分鐘；這邊叫 Uber 要等一下']},
+ {area:'機張',pick:1,name:'Ojik 海帶湯',kr:'오직미역국',hours:'平日 10:00 – 20:00（15:30 – 16:30 休息）／假日 10:00 – 20:30（16:00 – 17:00 休息）',addr:'부산 기장군 기장읍 동암2길 3 2층',map:'https://naver.me/FnsX9yWS',info:'https://www.instagram.com/reel/C01LU2-vVxC/',tips:['DIY 煎餅：等餐時店家給麵糊與平底鍋，自己煎海草／蔥煎餅']},
+ {area:'機張',pick:0,name:'Coral Ani',kr:'코랄라니',hours:'10:00 – 22:00（21:20 最後點餐）',map:'https://naver.me/GALRIqNv',info:'https://we4-travel.com/cafe-coralani/',tips:['Skyline Luge 斜坡滑車附近','四層樓，每層都有靠窗海景位，也有戶外海景座位']},
+ {area:'西面',pick:0,name:'老宅燒肉店 Old Mansion',kr:'올드맨션',hours:'週一至週五 11:30 – 22:30（15:00 – 17:00 休息）；週末 12:30 – 22:30',map:'https://naver.me/5T0lQc4l',info:'https://www.instagram.com/reel/DFAoiAWTIIu/',tips:['近田浦站 7 號出口；到場用門口平板掃 Catch Table QR Code 排隊','熟成烤肉']},
+ {area:'西面',pick:1,name:'秀英本家豬肉湯飯',kr:'수영본가돼지국밥',hours:'24 小時',map:'https://naver.me/IDBoq4Hq',info:'https://www.bigfang.tw/blog/post/suyeong-porksoup-seomyeon',tips:['西面站 1 / 7 號出口步行 2 分鐘，在西面湯飯一條街上','湯頭好喝，豬肉不腥']},
+ {area:'西面',pick:1,name:'83獬豸',kr:'83해치',hours:'16:00 – 00:30（三點半開門，六點客滿）',map:'https://naver.me/Fgivy92X',info:'https://www.bigfang.tw/blog/post/83haechi-bbq-seomyeon',tips:['地鐵 1 / 2 號線西面站 8 號出口','用 Catchtable App 或到場掃 QR Code 線上候位','店員幫烤：五花肉、松阪豬、豬皮、石鍋炒飯']},
+ {area:'西面',pick:1,name:'장어다움 Jangeo-daum',kr:'西面鰻魚燒烤（有盲鰻）',hours:'16:00 – 02:00（每月第 2、4、5 個週日公休）',addr:'부산 부산진구 부전로66번길 6',map:'https://naver.me/5DZp267y',tips:['自然產海鰻 바다장어、곰장어 盲鰻 炭火燒烤','無觀光客，在釜山商務酒店附近']},
+ {area:'西面',pick:0,name:'DIART coffee 田浦',kr:'디아트커피',hours:'10:00 – 22:00（週一公休）',map:'https://naver.me/5FE5Pt8Q',info:'https://lizzzstyle.tw/diart-coffee/',tips:['招牌：土耳其蜂蜜奶油麵包','地鐵田浦站 8 號出口步行約 5 分鐘']},
+ {area:'南浦洞',pick:1,name:'元祖釜山豬腳',kr:'원조부산족발',hours:'10:00 – 24:00',addr:'부산광역시 중구 광복로 13-1',map:'https://naver.me/FUiqRUKG',info:'https://www.bigfang.tw/blog/post/hanyang-jokbal-busan',tips:['地鐵 1 號線札嘎其站 3 號出口步行約 5 分鐘','必點冷盤豬腳 냉채족발：冰鎮切片 Q 彈，配海蜇皮、黃瓜、芥末醬，清爽帶嗆']},
+ {area:'廣安里',pick:0,name:'水邊最高豬肉湯飯',kr:'수변최고돼지국밥',hours:'24 小時，全年無休',addr:'부산 수영구 광안로 63',info:'https://lizzzstyle.tw/su-byeon/',tips:['尖峰常排 30 分鐘以上，建議清晨、深夜或下午離峰','有民樂本店與廣安店兩家']},
+ {area:'廣安里',pick:1,name:'烤腸 廣安里店',kr:'연막창 광안리점',hours:'平日 17:00 – 00:00／假日 16:00 – 01:00',addr:'부산 수영구 광남로 122 105-1호',map:'https://naver.me/xy7xBA6f',info:'https://blog.naver.com/speakinggirl/224184772140',tips:['Naver 可線上預約','豬大腸、牛皺胃處理乾淨，不油膩、口感彈牙']},
+ {area:'廣安里',pick:1,name:'烤鰻魚 Jangduk Eels 廣安總店',kr:'장어덕',hours:'12:00 – 23:00',addr:'釜山水營區民樂洞 110-17',map:'https://naver.me/xWIDtvho',info:'https://www.threads.com/@pooh75820/post/DTz9u7KAFmZ/',tips:['地鐵 2 號線民樂站 1 / 3 號出口或廣安站 5 號出口','厚實 Q 彈、鮮甜無腥','西面有分店，西面站步行 5–10 分鐘']},
+ {area:'廣安里',pick:0,name:'釜山廣安里章腸蝦',kr:'이낙에산다 광안리본점',hours:'11:00 – 20:50（20:20 最後點餐）',map:'https://naver.me/5JqdtYZz',info:'https://www.threads.com/@iamshin_kr/post/DbBUEJhkvcB/',tips:['招牌炒章魚、辣炒章魚肥腸蝦 낙곱새、蝦仁明太子水芹煎餅','金蓮山站 5 號出口步行約 3 分鐘','可 Naver 預約']},
+ {area:'廣安里',pick:0,name:'La Feuille 麵包咖啡廳',kr:'라푀유 광안점',hours:'09:00 – 23:00',map:'https://naver.me/5EUZ755T',info:'https://lizzzstyle.tw/la-feuille/',tips:['六層樓，四層是海景內用座位；麵包從早上九點賣到晚上','週六可在這裡看廣安里無人機秀']},
+ {area:'廣安里',pick:0,name:'casa busano terrace',kr:'',hours:'08:30 – 02:00',map:'https://map.naver.com/p/entry/place/1624692403',info:'https://mamahuhu.blog/overseas/casa-busano-terrace/',tips:[]}
+];
+
+const SEOUL=[
+ {area:'東大門',lat:37.5713674,lng:127.0159847,name:'Gobau',note:'40 年韓牛老店',map:'https://www.google.com/maps/place/Gobau/@37.5713674,126.8841488,12z/data=!4m10!1m2!2m1!1sGobau!3m6!1s0x357ca357fa7aa6fb:0xcb4b56e61baa1029!8m2!3d37.5713674!4d127.0159847'},
+ {area:'聖水',lat:37.5448651,lng:127.0594472,name:'無垢屋',note:'北韓雞湯很像濃肉湯，肉超嫩',map:'https://www.google.com/maps/place/%E7%84%A1%E5%9E%A2%E5%B1%8B+%E8%81%96%E6%B0%B4%E5%BA%97/@37.5448651,127.0568723,17z/data=!3m1!4b1!4m6!3m5!1s0x357ca5df1ce46d09:0xe9d21fa0c6a0ba66!8m2!3d37.5448651!4d127.0594472'},
+ {area:'聖水',lat:37.5428241,lng:127.0543732,name:'祖傳三代馬鈴薯排骨湯',note:'肉超嫩、湯好喝、很下飯',map:'https://www.google.com/maps/place/%E7%A5%96%E5%82%B3%E4%B8%89%E4%BB%A3%E9%A6%AC%E9%88%B4%E8%96%AF%E6%8E%92%E9%AA%A8%E6%B9%AF/@37.5428241,127.0517983,17z/data=!3m1!4b1!4m6!3m5!1s0x357ca4913140fbb5:0x7897953e193bd3f9!8m2!3d37.5428241!4d127.0543732'},
+ {area:'新沙洞',lat:37.5166367,lng:127.0190596,name:'烤黨',note:'五花肉跟松露炸醬麵好吃',map:'https://www.google.com/maps/place/%E7%83%A4%E9%BB%A8/@37.5166367,126.9531416,13z/data=!4m10!1m2!2m1!1z54Ok6buo!3m6!1s0x357ca3023528757b:0xedb9c5c6516f26b!8m2!3d37.5166367!4d127.0190596'},
+ {area:'景福宮',lat:37.576452,lng:126.9716428,name:'Ppyeotanjip',note:'雞肉炒飯超好吃',map:'https://www.google.com/maps/place/Ppyeotanjip/@37.576452,126.9690679,17z/data=!4m14!1m7!3m6!1s0x357ca295b8600f8d:0x96dc97128035f577!2sPpyeotanjip!8m2!3d37.576452!4d126.9716428'}
+];
+
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const gmap=q=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q);
+const nmap=q=>'https://map.naver.com/p/search/'+encodeURIComponent(q);
+const ncoord=(lat,lng)=>`https://map.naver.com/p?c=${lng},${lat},17,0,0,0,dh`;
+const hasKo=s=>/[가-힣]/.test(s||'');
+const lnk=(href,label)=>`<a href="${href}" target="_blank" rel="noopener">${label}</a>`;
+const todayKey=(()=>{const n=new Date();return (n.getMonth()+1).toString().padStart(2,'0')+'.'+n.getDate().toString().padStart(2,'0')+'|'+n.getFullYear()})();
+
+/* Days */
+const chips=document.getElementById('chips'),daysEl=document.getElementById('days');
+DAYS.forEach((d,i)=>{
+  const id='day'+(i+1), isToday=todayKey===d.d+'|2026';
+  chips.insertAdjacentHTML('beforeend',`<a class="chip" href="#${id}" data-for="${id}"><b>${d.d}</b><small>週${d.w}</small></a>`);
+  const items=d.items.map(it=>{
+    if(it.ticket){const k=it.ticket;return `<li class="ticketrow"><div class="t">${k.dep}<span>→ ${k.arr}</span></div><div class="ic">${I[k.icon]}</div><div class="what"><div class="ticket"><div><div class="code">${esc(k.code)}</div><div class="port">${esc(k.from)}</div><div class="time">${k.dep} 出發</div></div><div class="mid">${I[k.icon]}<div class="line"></div><span>${k.dur}</span></div><div class="to"><div class="code">${esc(k.label)}</div><div class="port">${esc(k.to)}</div><div class="time">${k.arr} 抵達</div></div></div></div></li>`}
+    const t=it.t2?`<div class="t">${it.t}<span>– ${it.t2}</span></div>`:`<div class="t">${it.t}</div>`;
+    const L=[];if(it.q||it.google)L.push(lnk(it.google||gmap(it.q),'Google 地圖'));if(it.q||it.naver)L.push(lnk(it.naver||nmap(it.q),'Naver 地圖'));if(it.link)L.push(lnk(it.link,'介紹'));
+    return `<li${it.quiet?' class="quiet"':''}>${t}<div class="ic">${it.k?I[it.k]:''}</div><div class="what">${esc(it.w)}${it.note?`<span class="note">${esc(it.note)}</span>`:''}${L.length?`<span class="links">${L.join('')}</span>`:''}</div></li>`;
+  }).join('');
+  const stay=d.stay?`<div class="stay">${I.hotel}<span>住 ${esc(d.stay)}</span></div>`:'';
+  daysEl.insertAdjacentHTML('beforeend',`<section class="day${i%2?' band':''}${d.city==='首爾'?' seoul':''}" id="${id}"><div class="wrap"><div class="dayhead"><div class="top"><div class="big">${String(i+1).padStart(2,'0')}</div><div class="wx" data-city="${d.city}" data-date="2026-${d.d.replace('.','-')}"><div class="wxi">${I.wxload}</div><div class="wxt"><b>天氣</b><span>載入中…</span></div></div></div><div class="num">Day ${i+1} · ${d.city}</div><h2>${esc(d.title)}</h2><div class="date">2026.${d.d} 週${d.w}${isToday?'<span class="pill today">今天</span>':''}</div>${stay}</div><ul class="timeline">${items}</ul></div></section>`);
+});
+
+/* Active chip on scroll */
+const chipEls=[...chips.children], secs=[...daysEl.children];
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){chipEls.forEach(c=>c.classList.toggle('active',c.dataset.for===e.target.id));const a=chips.querySelector('.active');if(a)a.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'})}})},{rootMargin:'-45% 0px -50% 0px'});
+secs.forEach(s=>io.observe(s));
+chipEls[0].classList.add('active');
+
+/* Busan restaurants */
+const areas=['全部',...new Set(BUSAN.map(r=>r.area))];
+const seg=document.getElementById('areaSeg'),grid=document.getElementById('busanGrid');
+let cur='全部';try{cur=localStorage.getItem('area')||'全部'}catch(e){}
+if(!areas.includes(cur))cur='全部';
+function card(r){
+  const title=r.info?`<a href="${r.info}" target="_blank" rel="noopener">${esc(r.name)}</a>`:esc(r.name);
+  const q=(hasKo(r.kr)?r.kr:r.name)+' 부산';
+  return `<article class="card"><div class="top"><span class="area">${esc(r.area)}</span></div><h3>${title}${r.kr?`<small>${esc(r.kr)}</small>`:''}</h3><div class="row"><span class="k">營業</span><span class="v">${esc(r.hours)}</span></div>${r.addr?`<div class="row"><span class="k">地址</span><span class="v">${esc(r.addr)}</span></div>`:''}${r.tips.length?`<ul class="tips">${r.tips.map(t=>`<li>${esc(t)}</li>`).join('')}</ul>`:''}<div class="actions">${lnk(gmap(q),'Google 地圖')}${lnk(r.map||nmap(q),'Naver 地圖')}${r.info?lnk(r.info,'介紹'):''}</div></article>`;
+}
+function render(){
+  seg.innerHTML=areas.map(a=>`<button type="button" id="seg-${a}" aria-pressed="${a===cur}" data-a="${a}">${a}</button>`).join('');
+  grid.innerHTML=BUSAN.filter(r=>cur==='全部'||r.area===cur).map(card).join('');
+}
+seg.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;cur=b.dataset.a;try{localStorage.setItem('area',cur)}catch(x){}render()});
+render();
+
+/* Seoul */
+document.getElementById('seoulGrid').innerHTML=SEOUL.map(r=>`<article class="card"><div class="top"><span class="area">${esc(r.area)}</span></div><h3>${esc(r.name)}</h3><div class="row"><span class="k">筆記</span><span class="v">${esc(r.note)}</span></div><div class="actions">${lnk(r.map,'Google 地圖')}${lnk(ncoord(r.lat,r.lng),'Naver 地圖')}</div></article>`).join('');
+
+/* Weather — Open-Meteo, 16-day forecast; days outside the window show as unavailable */
+(async()=>{
+  const els=[...document.querySelectorAll('.wx')];
+  const WMO=c=>c===0?['sun','晴']:c<=2?['psun','多雲時晴']:c===3?['cloud','陰']:c<=48?['fog','霧']:c<=57?['rain','毛毛雨']:c<=67?['rain','雨']:c<=77?['snow','雪']:c<=82?['rain','陣雨']:c<=86?['snow','陣雪']:['storm','雷雨'];
+  const fail=(msg)=>els.forEach(e=>{e.classList.add('none');e.querySelector('.wxi').innerHTML=I.cloud;e.querySelector('.wxt').innerHTML=`<b>—</b><span>${msg}</span>`});
+  try{
+    const u='https://api.open-meteo.com/v1/forecast?latitude=35.1796,37.5665&longitude=129.0756,126.978&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FSeoul&forecast_days=16';
+    const ctl=new AbortController();setTimeout(()=>ctl.abort(),10000);
+    const r=await fetch(u,{signal:ctl.signal});if(!r.ok)throw 0;
+    const j=await r.json();const arr=Array.isArray(j)?j:[j];const by={'釜山':arr[0].daily,'首爾':(arr[1]||arr[0]).daily};
+    els.forEach(e=>{
+      const d=by[e.dataset.city],ix=d.time.indexOf(e.dataset.date);
+      if(ix<0){e.classList.add('none');e.querySelector('.wxi').innerHTML=I.cloud;e.querySelector('.wxt').innerHTML='<b>—</b><span>預報尚未開放（出發前 16 天內）</span>';return}
+      const [ic,label]=WMO(d.weather_code[ix]),hi=Math.round(d.temperature_2m_max[ix]),lo=Math.round(d.temperature_2m_min[ix]),pp=d.precipitation_probability_max[ix];
+      e.querySelector('.wxi').innerHTML=I[ic];
+      e.querySelector('.wxt').innerHTML=`<b>${hi}° <span style="color:var(--fg3);font-weight:500">/ ${lo}°</span></b><span>${e.dataset.city} · ${label}${pp!=null?` · 降雨 ${pp}%`:''}</span>`;
+    });
+  }catch(err){fail('目前無法取得天氣預報')}
+})();
+</script>
+</body>
+</html>
